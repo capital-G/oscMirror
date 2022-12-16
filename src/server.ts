@@ -38,6 +38,10 @@ export class SuperColliderWebRtcServer {
     this.app.get("/live", (req, res) => {
       res.sendStatus(200);
     });
+
+    this.app.get("/", (req, res) => {
+      res.sendFile(`${__dirname}/static/index.html`);
+    });
   }
 
   setupSocket() {

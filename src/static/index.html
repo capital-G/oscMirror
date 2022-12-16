@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>oscMirror monitor</title>
+    <style>
+        body {
+            margin: 0;
+            padding-bottom: 3rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        #form {
+            background: rgba(0, 0, 0, 0.15);
+            padding: 0.25rem;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            height: 3rem;
+            box-sizing: border-box;
+            backdrop-filter: blur(10px);
+        }
+
+        #form>button {
+            background: #333;
+            border: none;
+            padding: 0 1rem;
+            margin: 0.25rem;
+            border-radius: 3px;
+            outline: none;
+            color: #fff;
+        }
+
+        #messages {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #messages>li {
+            padding: 0.5rem 1rem;
+        }
+
+        #messages>li:nth-child(odd) {
+            background: #efefef;
+        }
+    </style>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+</head>
+
+<body>
+    <h1>oscMirror monitor</h1>
+    <ul id="messages" style="white-space: pre;"></ul>
+    <form id="form" onsubmit="return false;">
+        <button onclick="sendHello()">Send "hello from web"</button>
+        <button onclick="playTestSound()">Play test sound</button>
+    </form>
+    <script>
+        var socket = io();
+        var messages = document.getElementById('messages');
+        var form = document.getElementById('form');
+
+        socket.on('broadcastMessage', function (msg) {
+            console.log(`New message: ${msg.code}`);
+            var item = document.createElement('li');
+            item.textContent = `${msg.code}`;
+            messages.appendChild(item);
+            window.scrollTo(0, document.body.scrollHeight);
+        });
+
+        function sendHello() {
+            socket.emit('sendMessage', {code: `"hello from web".postln;`});
+            alert("Send postln message to all clients");
+        };
+
+        function playTestSound() {
+            socket.emit('sendMessage', {code: `().play;`});
+            alert("Sent test sound to all clients");
+        }
+    </script>
+</body>
+
+</html>
