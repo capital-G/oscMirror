@@ -78,6 +78,15 @@ export class SuperColliderWebRtcServer {
         console.log(`Distribute message from ${socket.request.connection.remoteAddress}: ${message.code}`);
         socket.broadcast.emit("broadcastMessage", message);
       });
+
+      socket.on("sendVisual", (message) => {
+        if (!auth) {
+          console.log(`WARNING: Unauthorized visual distribution from ${socket.request.connection.remoteAddress}: ${message.code}`);
+          return;
+        }
+        console.log(`Distribute visual message from ${socket.request.connection.remoteAddress}: ${message.code}`);
+        socket.broadcast.emit("broadcastVisual", message);
+      });
     });
   }
 }

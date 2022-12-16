@@ -34,14 +34,19 @@ const udpPort = new osc.UDPPort({
 udpPort.open();
 
 udpPort.on("message", (oscMessage: any) => {
-  const address = oscMessage.address;
-  if (address !== "/code") {
-    console.log(`Received OSC Message on wrong channel ${address}`);
-    return;
+  switch(oscMessage.address) {
+    case "/code":
+      let codeMessage = <CodeMessage>{code: oscMessage.args[0]}
+      console.log(`Send to server: ${codeMessage.code}`);
+      socket.emit("sendMessage", codeMessage);
+      break
+    case "/visual":
+      let visualMessage = <CodeMessage>{code: oscMessage.args[0]}
+      console.log(`Send to visual: ${visualMessage.code}`);
+      break
+    default:
+      console.log(`Received OSC Message on wrong channel ${oscMessage.address}`);
   }
-  const code = oscMessage.args[0];
-  console.log(`Send to server: ${code}`);
-  socket.emit("sendMessage", <CodeMessage>{code: code});
 });
 
 socket.on("connect", () => {
