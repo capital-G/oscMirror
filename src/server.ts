@@ -1,8 +1,9 @@
 import type { Server } from "http";
 import { createServer } from "http";
-import type { Express } from "express";
+import type { Express, Request } from "express";
 import express from "express";
 import { Server as SocketServer } from "socket.io";
+import cors from "cors";
 import type { ClientToServerEvents, Message, ServerToClientEvents } from "./communication";
 
 export class SuperColliderWebRtcServer {
@@ -13,6 +14,7 @@ export class SuperColliderWebRtcServer {
 
   constructor() {
     this.app = express();
+    this.app.use(cors<Request>());
 
     this.http = createServer(this.app);
 
