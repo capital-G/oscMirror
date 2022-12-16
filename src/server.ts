@@ -63,7 +63,7 @@ export class SuperColliderWebRtcServer {
           console.log(`WARNING: Unauthorized code distribution from ${socket.request.connection.remoteAddress}: ${message.code}`);
           return;
         }
-        console.log(`Distribute message: ${message.code}`);
+        console.log(`Distribute message from ${socket.request.connection.remoteAddress}: ${message.code}`);
         socket.broadcast.emit("broadcastMessage", message);
       });
     });
