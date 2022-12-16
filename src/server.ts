@@ -20,10 +20,8 @@ export class SuperColliderWebRtcServer {
 
     this.io = new SocketServer<ClientToServerEvents, ServerToClientEvents>(this.http, {
       cors: {
-        origin: [
-          "http://localhost:*",
-          "http://client"
-        ]
+        origin: "*",
+        methods: ["GET", "POST"]
       }
     });
 
