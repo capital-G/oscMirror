@@ -1,0 +1,13 @@
+version: '3.0'
+
+services:
+  backend:
+    build: .
+    entrypoint: [ "npm", "run", "client"]
+    environment:
+      - BACKEND_AUTH_TOKEN=${BACKEND_AUTH_TOKEN:-change_me}
+      - BACKEND_ADDRESS=${BACKEND_ADDRESS:-http://host.docker.internal:4000}
+      - SC_HOST=${SC_HOST:-host.docker.internal}
+    ports:
+      - 22244:22244/udp
+      - 22245:22245/udp

@@ -34,7 +34,18 @@ BACKEND_ADDRESS="https://mirror.dennis-scheiba.com" \
 npm run client
 ```
 
-where the variables must be adjusted for the desired environment.
+If everything went well you should see a "Connected to server" message after some time.
+
+### Docker
+
+> - This will not work for Linux, please use the native Node/npm version above
+> - Note that on some platforms it is `docker-compose` and on others it is `docker compose`
+
+```shell
+BACKEND_AUTH_TOKEN=xenakisBirthdayBoy \
+BACKEND_ADDRESS="https://mirror.dennis-scheiba.com" \
+docker compose -f docker-compose.client.yml up --build
+```
 
 ## Setup server
 
