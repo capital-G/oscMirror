@@ -4,9 +4,9 @@ import type { ClientToServerEvents, CodeMessage, ServerToClientEvents } from "./
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const osc = require("osc");
 
-const SC_PORT: number = Number(process.env.SC_PORT) || 57120;
+const SC_PORT: number = Number(process.env.SC_PORT) || 22245;
 const SC_HOST: string = process.env.SC_HOST || "localhost";
-const CLIENT_PORT: number = Number(process.env.CLIENT_PORT) || 57220;
+const CLIENT_PORT: number = Number(process.env.CLIENT_PORT) || 22244;
 const BACKEND_ADDRESS: string = process.env.BACKEND_ADDRESS || "http://localhost:3000";
 const BACKEND_AUTH_TOKEN: string | null = process.env.BACKEND_AUTH_TOKEN || null;
 

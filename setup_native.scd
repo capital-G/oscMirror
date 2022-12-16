@@ -2,8 +2,9 @@
 var interpreter = thisProcess.interpreter;
 q = q ? ();
 
-q[\oscMirrorPort] = 57220;
-q[\oscMirrorNet] = NetAddr("127.0.0.1", q[\oscMirrorPort]);
+q[\oscMirrorSendPort] = 22244;
+q[\oscMirrorReceivePort] = 22245;
+q[\oscMirrorNet] = NetAddr("127.0.0.1", q[\oscMirrorSendPort]);
 q[\oscMirror] = false;
 
 q[\isSafe] = {|string|
@@ -19,11 +20,11 @@ OSCdef(\oscMirror, {|msg|
 	if(q[\oscMirror].and(q[\isSafe].(msg)), {
 		msg[1].postln;
 	});
-}, "/oscMirror/receive");
+}, "/code", recvPort: q[\oscMirrorReceivePort]);
 
 interpreter.codeDump = interpreter.codeDump.addFunc({|code|
 	if(q[\oscMirror] == true, {
-		q[\oscMirrorNet].sendMsg("/oscMirror/send", code);
+		q[\oscMirrorNet].sendMsg("/code", code);
 	});
 });
 )

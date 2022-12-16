@@ -2,6 +2,7 @@
 
 A derivative of [webRTCgui](https://github.com/capital-G/webRTCgui) which uses the websockets to channel OSC messages through the network.
 This allows to circumvent many network restrictions such as Firewalls which may make it hard to exchange OSC messages directly.
+It aims to reproduce the core API of [OSCGroups](https://www.rossbencina.com/code/oscgroups).
 
 The project consists of two parts written in NodeJS,
 
