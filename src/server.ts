@@ -45,18 +45,26 @@ export class SuperColliderWebRtcServer {
       const token = socket.handshake.auth.token;
       let auth = true;
 
+      console.log(`New client connected: ${socket.request.connection.remoteAddress}`);
+
       if (this.authToken) {
         if (this.authToken !== token) {
           auth = false;
           if (this.authToken != null && token != null)
-            console.log(`WARNING! Got wrong authentication with "${token}"`);
+            console.log(`!WARNING! Got wrong authentication for Client ${socket.request.connection.remoteAddress} with "${token}"`);
         }
         else {
-          console.log("Client with proper credentials connected");
+          console.log(`Client ${socket.request.connection.remoteAddress} connected with proper credentials`);
         }
-      } else {
-        console.log("New user connected");
       }
+
+      socket.on("disconnect", (reason) => {
+        console.log(`Client ${socket.request.connection.remoteAddress} disconnected: ${reason}`);
+      });
+
+      socket.on("error", (error) => {
+        console.log(`Client ${socket.request.connection.remoteAddress} got error: ${error.message}`);
+      });
 
       socket.on("sendMessage", (message) => {
         if (!auth) {
