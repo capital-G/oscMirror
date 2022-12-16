@@ -18,6 +18,8 @@ git clone https://github.com/capital-G/oscMirror.git
 cd oscMirror
 ```
 
+**Make sure you have already started `OscGroups.enable` because otherwise you will may not be able to receive remote commands because of port clashes.**
+
 ### Node
 
 Assuming you have node installed you first need to install the necessary dependencies via
