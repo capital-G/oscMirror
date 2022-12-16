@@ -36,6 +36,18 @@ npm run client
 
 where the variables must be adjusted for the desired environment.
 
+## Setup server
+
+Clone the repo, install Docker and run
+
+```shell
+BACKEND_AUTH_TOKEN=aGoodPw \
+docker-compose -f docker-compose.server.yml up --build
+```
+
+and put a reverse proxy on port `4000`.
+Make sure you have activated the websocket support on your reverse proxy!
+
 ## License
 
 GPL-2.0
