@@ -4,10 +4,10 @@ A derivative of [webRTCgui](https://github.com/capital-G/webRTCgui) which uses t
 This allows to circumvent many network restrictions such as Firewalls which may make it hard to exchange OSC messages directly.
 It aims to reproduce the core API of [OSCGroups](https://www.rossbencina.com/code/oscgroups).
 
-The project consists of two parts written in NodeJS,
+The project consists of two parts written in TypeScript,
 
-1) a server which needs to be run on a remote machine and
-2) a clients which server as translation layer between the WebSocket connection and our OSC messages from e.g. SuperCollider.
+1) a server which needs to run on a remote machine and
+2) a client, which serves as the translation layer between the WebSocket connection and our OSC messages from e.g. SuperCollider. This needs to run on your local machine.
 
 ## Setup client
 
