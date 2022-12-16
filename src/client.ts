@@ -43,6 +43,7 @@ udpPort.on("message", (oscMessage: any) => {
     case "/visual":
       let visualMessage = <CodeMessage>{code: oscMessage.args[0]}
       console.log(`Send to visual: ${visualMessage.code}`);
+      socket.emit("sendVisual", visualMessage);
       break
     default:
       console.log(`Received OSC Message on wrong channel ${oscMessage.address}`);
