@@ -29,8 +29,8 @@ npm install
 After this you can connect your local client to the central server via
 
 ```shell
-BACKEND_AUTH_TOKEN=aGoodPw \
-BACKEND_ADDRESS="https://you-host.com" \
+BACKEND_AUTH_TOKEN=xenakisBirthdayBoy \
+BACKEND_ADDRESS="https://mirror.dennis-scheiba.com" \
 npm run client
 ```
 
@@ -41,8 +41,8 @@ where the variables must be adjusted for the desired environment.
 Clone the repo, install Docker and run
 
 ```shell
-BACKEND_AUTH_TOKEN=aGoodPw \
-docker-compose -f docker-compose.server.yml up --build
+BACKEND_AUTH_TOKEN=xenakisBirthdayBoy \
+docker-compose -f docker-compose.server.yml up --build -d
 ```
 
 and put a reverse proxy on port `4000`.
