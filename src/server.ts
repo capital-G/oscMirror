@@ -49,7 +49,7 @@ export class SuperColliderWebRtcServer {
         if (this.authToken !== token) {
           auth = false;
           if (this.authToken != null && token != null)
-            console.log(`WARNING! Got wrong authentication for ${socket}`);
+            console.log(`WARNING! Got wrong authentication with "${token}"`);
         }
         else {
           console.log("Client with proper credentials connected");
