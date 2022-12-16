@@ -7,7 +7,7 @@ const osc = require("osc");
 const SC_PORT: number = Number(process.env.SC_PORT) || 22245;
 const SC_HOST: string = process.env.SC_HOST || "localhost";
 const CLIENT_PORT: number = Number(process.env.CLIENT_PORT) || 22244;
-const BACKEND_ADDRESS: string = process.env.BACKEND_ADDRESS || "http://localhost:3000";
+const BACKEND_ADDRESS: string = process.env.BACKEND_ADDRESS || "http://localhost:4000";
 const BACKEND_AUTH_TOKEN: string | null = process.env.BACKEND_AUTH_TOKEN || null;
 
 console.log("Start client");
@@ -35,7 +35,7 @@ udpPort.open();
 
 udpPort.on("message", (oscMessage: any) => {
   const address = oscMessage.address;
-  if (address !== "/oscMirror/send") {
+  if (address !== "/code") {
     console.log(`Received OSC Message on wrong channel ${address}`);
     return;
   }
@@ -52,7 +52,7 @@ socket.on("broadcastMessage", (message) => {
   console.log(`Received from server: ${message.code}`);
 
   udpPort.send({
-    address: "/oscMirror/receive",
+    address: "/code",
     args: message.code,
   });
 });

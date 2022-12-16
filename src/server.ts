@@ -68,6 +68,6 @@ export class SuperColliderWebRtcServer {
 
 const server = new SuperColliderWebRtcServer();
 
-server.http.listen(3000, "0.0.0.0", () => {
-  console.log("listening on 0.0.0.0:3000");
+server.http.listen(4000, "0.0.0.0", () => {
+  console.log("listening on 0.0.0.0:4000");
 });

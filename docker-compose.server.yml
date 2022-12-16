@@ -1,0 +1,12 @@
+version: '3.0'
+
+services:
+  backend:
+    build: .
+    entrypoint: [ "npm", "run", "server"]
+    environment:
+      - BACKEND_AUTH_TOKEN=${BACKEND_AUTH_TOKEN:-change_me}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4000/live"]
+    ports:
+      - 4000:4000
